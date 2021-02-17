@@ -1,10 +1,31 @@
-#/bin/bash
+#!/bin/bash
 
-echo "Your GuapCoin Masternode Will be Updated To Latest Version Now" 
+#stop_daemon function
+function stop_daemon {
+    if pgrep -x 'guapcoind' > /dev/null; then
+        echo -e "${YELLOW}Attempting to stop guapcoind${NC}"
+        guapcoin-cli stop
+        sleep 30
+        if pgrep -x 'guapcoind' > /dev/null; then
+            echo -e "${RED}guapcoind daemon is still running!${NC} \a"
+            echo -e "${RED}Attempting to kill...${NC}"
+            sudo pkill -9 guapcoind
+            sleep 30
+            if pgrep -x 'guapcoind' > /dev/null; then
+                echo -e "${RED}Can't stop guapcoind! Reboot and try again...${NC} \a"
+                exit 2
+            fi
+        fi
+    fi
+}
+
+
+echo "Your GuapCoin Masternode Will be Updated To The Latest Version Now" 
 sudo apt-get -y install unzip
-guapcoin-cli stop
-systemctl stop guapcoin.service
-sleep 10
+
+#Stop guapcoind by calling the stop_daemon function
+stop_daemon
+
 rm -rf /usr/local/bin/guapcoin*
 mkdir GUAP_2.3.0.1
 cd GUAP_2.3.0.1
@@ -23,8 +44,25 @@ tar -xzvf bootstrap.tar.gz
 
 cd ..
 rm -rf ~/.guapcoin/bootstrap.tar.gz ~/GUAP_2.3.0.1
-systemctl start guapcoin.service
-sleep 10
+#Stop daemon if it's already running
+function stop_daemon {
+    if pgrep -x 'guapcoind' > /dev/null; then
+        echo -e "${YELLOW}Attempting to stop guapcoind${NC}"
+        guapcoin-cli stop
+        sleep 30
+        if pgrep -x 'guapcoind' > /dev/null; then
+            echo -e "${RED}guapcoind daemon is still running!${NC} \a"
+            echo -e "${RED}Attempting to kill...${NC}"
+            sudo pkill -9 guapcoind
+            sleep 30
+            if pgrep -x 'guapcoind' > /dev/null; then
+                echo -e "${RED}Can't stop guapcoind! Reboot and try again...${NC} \a"
+                exit 2
+            fi
+        fi
+    fi
+}
+
 guapcoin-cli addnode 159.65.221.182 onetry
 guapcoin-cli addnode 45.76.255.103 onetry
 guapcoin-cli addnode 209.250.250.121 onetry
@@ -37,6 +75,16 @@ guapcoin-cli addnode 70.35.194.41 onetry
 guapcoin-cli addnode 144.202.75.140 onetry
 guapcoin-cli addnode 209.126.5.122 onetry
 guapcoin-cli addnode 95.216.27.40 onetry
+guapcoin-cli addnode 104.236.14.155 onetry
+
+ guapcoind -daemon
+#Finally, starting daemon with new guapcoin.conf
+printf '#!/bin/bash\nif [ ! -f "~/.guapcoin/guapcoin.pid" ]; then /usr/local/bin/guapcoind -daemon ; fi' > /root/guapcoinauto.sh
+chmod -R 755 /root/guapcoinauto.sh
+#Setting auto start cron job for guapcoin
+if ! crontab -l | grep "guapcoinauto.sh"; then
+    (crontab -l ; echo "*/5 * * * * /root/guapcoinauto.sh")| crontab -
+fi
 
 echo "Masternode Updated!"
 echo "Please wait few minutes and start your Masternode again on your Local Wallet"
