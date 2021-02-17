@@ -77,6 +77,7 @@ guapcoin-cli addnode 209.126.5.122 onetry
 guapcoin-cli addnode 95.216.27.40 onetry
 guapcoin-cli addnode 104.236.14.155 onetry
 
+#start daemon
  guapcoind -daemon
 #Finally, starting daemon with new guapcoin.conf
 printf '#!/bin/bash\nif [ ! -f "~/.guapcoin/guapcoin.pid" ]; then /usr/local/bin/guapcoind -daemon ; fi' > /root/guapcoinauto.sh
@@ -87,4 +88,4 @@ if ! crontab -l | grep "guapcoinauto.sh"; then
 fi
 
 echo "Masternode Updated!"
-echo "Please wait few minutes and start your Masternode again on your Local Wallet"
+echo "Please wait a few minutes and start your Masternode again on your Local Wallet"
