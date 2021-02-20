@@ -1,9 +1,16 @@
+Guapcoin Master Node version v5.0.1 is now available from: https://github.com/guapcrypto/Guapcoin-MN-Install-2.3.0.1
+Please report bugs using the issue tracker at github: https://github.com/guapcrypto/Guapcoin-MN-Install-2.3.0.1/issues
 # Table Of Contents:
+## Mandatory Update Details
 ## Section 1. Description
 ## Section 2. Quick Install Guide for GuapCoin v2.3.0.1 MasterNode Setup
 ## Section 3. Guide for installing GuapCoin v2.3.0.1 MasterNode Update
 ## Section 4. How to Setup A MasterNode Guide - Full Tutorial
 ## Section 5. Fixes
+
+# Important Update
+This is an important update for any Master Node running version 2.3.0 or lower as it resolves several instability issues with Masternodes missing or inactive on the network
+This release downloads updated package information from all configured sources and installs available upgrades of all packages currently installed on the system from the sources configured via sources.list file.
 
 # Section 1. Description 
 
@@ -179,6 +186,10 @@ As soon each of the 10K transactions are done, wait for at least 15 confirmation
 
 
 # Section 5.0 Fixes
-Version 2.3.0.1 is designed to resolve Masternode performance and stability issues, primarly memory and availibilty. Included in the update is the creation of a 2gb memory swap and cronjob which auto restarts the guapcoind deamon. Updates also include more active peers from the network.   
+Version 2.3.0.1 is designed to resolve Masternode performance and availability issues
+Updates masternode software repo list and upgrades packages
+Includes a fix for less equipped Masternodes that are not equipped with sufficient RAM by adding a 2gb memory swap file
+Custom cronjob which auto restarts the guapcoind deamon. 
+More reliable network peers added to the configuration file and offline peers removed.    
 
 
