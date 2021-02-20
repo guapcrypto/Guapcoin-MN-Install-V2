@@ -1,5 +1,3 @@
-Guapcoin Master Node version v5.0.1 is now available from: https://github.com/guapcrypto/Guapcoin-MN-Install-2.3.0.1
-Please report bugs using the issue tracker at github: https://github.com/guapcrypto/Guapcoin-MN-Install-2.3.0.1/issues
 # Table Of Contents:
 ## Mandatory Update Details
 ## Section 1. Description
