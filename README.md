@@ -189,7 +189,7 @@ As soon each of the 10K transactions are done, wait for at least 15 confirmation
 Version 2.3.0.1 is designed to resolve Masternode performance and availability issues
 Updates masternode software repo list and upgrades packages
 Includes a fix for less equipped Masternodes that are not equipped with sufficient RAM by adding a 2gb memory swap file
-Custom cronjob which auto restarts the guapcoind deamon. 
+Custom cronjob which auto restarts the guapcoind daemon. 
 More reliable network peers added to the configuration file and offline peers removed.    
 
 
