@@ -1,5 +1,5 @@
 #!/bin/bash
-# GuapCoin Masternode Setup Script V2.3.0.1 for Ubuntu LTS
+# GuapCoin Masternode Setup Script V2.3.1 for Ubuntu LTS
 #
 # Script will attempt to autodetect primary public IP address
 # and generate masternode private key unless specified in command line
